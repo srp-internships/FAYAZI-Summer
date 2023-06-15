@@ -1,0 +1,38 @@
+using BlogContext context = new();
+
+context.Add(new User { Username = "john_smith", Email = "johnsmith@example.com", Password = "password123" });
+context.Add(new User { Username = "emma_walker", Email = "emma.walker@example.com", Password = "pass123" });
+context.Add(new User { Username = "alex_james", Email = "alexjames@example.com", Password = "abc@123" });
+context.Add(new User { Username = "lily_green", Email = "lily.green@example.com", Password = "green2022" });
+context.Add(new User { Username = "michael_brown", Email = "michael.brown@example.com", Password = "brownie" });
+context.Add(new User { Username = "sarah_thompson", Email = "sarah.thompson@example.com", Password = "pass987" });
+context.Add(new User { Username = "david_wilson", Email = "davidwilson@example.com", Password = "password321" });
+context.Add(new User { Username = "olivia_taylor", Email = "olivia.taylor@example.com", Password = "taylor@123" });
+context.Add(new User { Username = "william_jones", Email = "williamjones@example.com", Password = "password999" });
+context.Add(new User { Username = "sophia_adams", Email = "sophia.adams@example.com", Password = "adams2023" });
+
+
+
+context.Add(new Post { UserId = 3, Content = "Excited for the weekend!", CreatedAt = DateTime.Now });
+context.Add(new Post { UserId = 8, Content = "Just finished reading a great book!", CreatedAt = DateTime.Now });
+context.Add(new Post { UserId = 5, Content = "Enjoying the beautiful weather today.", CreatedAt = DateTime.Now });
+context.Add(new Post { UserId = 2, Content = "Feeling motivated and ready to conquer the day!", CreatedAt = DateTime.Now });
+context.Add(new Post { UserId = 7, Content = "Happy birthday to my amazing friend!", CreatedAt = DateTime.Now });
+context.Add(new Post { UserId = 4, Content = "New recipe experiment in the kitchen!", CreatedAt = DateTime.Now });
+context.Add(new Post { UserId = 10, Content = "Exploring new hiking trails this weekend.", CreatedAt = DateTime.Now });
+context.Add(new Post { UserId = 6, Content = "Excited about my upcoming travel plans!", CreatedAt = DateTime.Now });
+context.Add(new Post { UserId = 1, Content = "Missing my family and friends.", CreatedAt = DateTime.Now });
+context.Add(new Post { UserId = 9, Content = "Great day spent at the beach!", CreatedAt = DateTime.Now });
+
+context.Add(new Comment { PostId = 2, UserId = 4, Content = "What book did you read?", CreatedAt = DateTime.Now });
+context.Add(new Comment { PostId = 5, UserId = 9, Content = "Wishing them a fantastic day!", CreatedAt = DateTime.Now });
+context.Add(new Comment { PostId = 3, UserId = 2, Content = "I love the weather too!", CreatedAt = DateTime.Now });
+context.Add(new Comment { PostId = 1, UserId = 6, Content = "Have a great weekend!", CreatedAt = DateTime.Now });
+context.Add(new Comment { PostId = 4, UserId = 10, Content = "You got this!", CreatedAt = DateTime.Now });
+context.Add(new Comment { PostId = 7, UserId = 3, Content = "Let me know how it goes!", CreatedAt = DateTime.Now });
+context.Add(new Comment { PostId = 9, UserId = 5, Content = "Thinking of you!", CreatedAt = DateTime.Now });
+context.Add(new Comment { PostId = 6, UserId = 1, Content = "Share the recipe please!", CreatedAt = DateTime.Now });
+context.Add(new Comment { PostId = 8, UserId = 7, Content = "Where are you traveling to?", CreatedAt = DateTime.Now });
+context.Add(new Comment { PostId = 10, UserId = 2, Content = "Sounds amazing!", CreatedAt = DateTime.Now });
+
+context.SaveChanges();
