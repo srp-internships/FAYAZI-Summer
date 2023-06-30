@@ -5,14 +5,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F67A536D-8E44-4EB3-8626-992B7BE922F2}</ProjectGuid>
+    <ProjectGuid>{415B010B-3387-41C8-8649-98E423189105}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>VidzyExercise</RootNamespace>
-    <AssemblyName>VidzyExercise</AssemblyName>
+    <RootNamespace>DataAnnotations</RootNamespace>
+    <AssemblyName>DataAnnotations</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
@@ -53,58 +53,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EntityConfigurations\GenreConfiguration.cs" />
-    <Compile Include="EntityConfigurations\VideoConfiguration.cs" />
-    <Compile Include="Migrations\202306261052347_InitialMigration.cs" />
-    <Compile Include="Migrations\202306261052347_InitialMigration.designer.cs">
-      <DependentUpon>202306261052347_InitialMigration.cs</DependentUpon>
+    <Compile Include="Author.cs" />
+    <Compile Include="Course.cs" />
+    <Compile Include="Migrations\202306290459460_InitialModel.cs" />
+    <Compile Include="Migrations\202306290459460_InitialModel.designer.cs">
+      <DependentUpon>202306290459460_InitialModel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202306261055201_PopulatingTables.cs" />
-    <Compile Include="Migrations\202306261055201_PopulatingTables.designer.cs">
-      <DependentUpon>202306261055201_PopulatingTables.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202306261104388_ChangedRelationshipInTableVideos.cs" />
-    <Compile Include="Migrations\202306261104388_ChangedRelationshipInTableVideos.designer.cs">
-      <DependentUpon>202306261104388_ChangedRelationshipInTableVideos.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202306261132323_AddClassificationColumnToTableVideos.cs" />
-    <Compile Include="Migrations\202306261132323_AddClassificationColumnToTableVideos.designer.cs">
-      <DependentUpon>202306261132323_AddClassificationColumnToTableVideos.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202306300358141_ModelsConfiguration.cs" />
-    <Compile Include="Migrations\202306300358141_ModelsConfiguration.designer.cs">
-      <DependentUpon>202306300358141_ModelsConfiguration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202306300427405_ModelsConfigurationAndAddingNewTagsColumn.cs" />
-    <Compile Include="Migrations\202306300427405_ModelsConfigurationAndAddingNewTagsColumn.designer.cs">
-      <DependentUpon>202306300427405_ModelsConfigurationAndAddingNewTagsColumn.cs</DependentUpon>
+    <Compile Include="Migrations\202306290509052_AddAnnotationsToCourseTable.cs" />
+    <Compile Include="Migrations\202306290509052_AddAnnotationsToCourseTable.designer.cs">
+      <DependentUpon>202306290509052_AddAnnotationsToCourseTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="PlutoContext.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tag.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202306261052347_InitialMigration.resx">
-      <DependentUpon>202306261052347_InitialMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202306290459460_InitialModel.resx">
+      <DependentUpon>202306290459460_InitialModel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202306261055201_PopulatingTables.resx">
-      <DependentUpon>202306261055201_PopulatingTables.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202306261104388_ChangedRelationshipInTableVideos.resx">
-      <DependentUpon>202306261104388_ChangedRelationshipInTableVideos.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202306261132323_AddClassificationColumnToTableVideos.resx">
-      <DependentUpon>202306261132323_AddClassificationColumnToTableVideos.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202306300358141_ModelsConfiguration.resx">
-      <DependentUpon>202306300358141_ModelsConfiguration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202306300427405_ModelsConfigurationAndAddingNewTagsColumn.resx">
-      <DependentUpon>202306300427405_ModelsConfigurationAndAddingNewTagsColumn.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202306290509052_AddAnnotationsToCourseTable.resx">
+      <DependentUpon>202306290509052_AddAnnotationsToCourseTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

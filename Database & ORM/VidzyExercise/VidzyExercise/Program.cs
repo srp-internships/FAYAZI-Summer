@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VidzyExercise.EntityConfigurations;
 
 namespace VidzyExercise
 {
@@ -30,7 +31,8 @@ namespace VidzyExercise
         public string Name { get; set; }
         public DateTime ReleaseDate { get; set; }
         public Genre Genre { get; set; }
-
+        public byte GenreId { get; set; }
+        public IList<Tag> Tags { get; set; }
         public Classification Classification { get; set; }
     }
 
@@ -41,7 +43,14 @@ namespace VidzyExercise
         public IList<Video> Videos { get; set; }
     }
 
-    public enum Classification
+    public class Tag
+    {
+        public byte Id { get; set; }
+        public string Name { get; set; }
+        public IList<Video> Videos { get; set; }
+    }
+
+    public enum Classification : byte
     {
         Silver = 3,
         Gold = 2,
@@ -52,5 +61,14 @@ namespace VidzyExercise
     {
         public DbSet<Video> Videos { get; set; }
         public DbSet<Genre> Genres { get; set; }
+        public DbSet<Tag> Tags { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Configurations.Add(new VideoConfiguration());
+            modelBuilder.Configurations.Add(new GenreConfiguration());
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
