@@ -12,16 +12,7 @@ namespace VidzyExercise
     {
         static void Main(string[] args)
         {
-            var db = new VidzyContext();
-            var ganries = db.Genres.Include(g => g.Videos).Where(g=>g.Id==2);
-            foreach (var ganry in ganries)
-            {
-                Console.WriteLine($"{ganry.Name}:");
-                foreach (var v in ganry.Videos)
-                {
-                    Console.WriteLine(v.Name);
-                }
-            }
+            
         }
     }
 
