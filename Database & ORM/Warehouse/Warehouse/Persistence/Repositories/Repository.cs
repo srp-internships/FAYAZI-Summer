@@ -33,7 +33,7 @@ namespace Warehouse.Persistence.Repositories
             return context.Set<TEntity>().Where(predicate);
         }
 
-        public IEnumerable<TEntity> GetAll()
+        virtual public IEnumerable<TEntity> GetAll()
         {
             return context.Set<TEntity>().ToList();
         }

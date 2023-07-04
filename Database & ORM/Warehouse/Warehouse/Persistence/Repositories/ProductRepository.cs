@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Runtime.InteropServices;
 using Warehouse.Core.Repositories;
 
 namespace Warehouse.Persistence.Repositories
@@ -10,6 +7,8 @@ namespace Warehouse.Persistence.Repositories
     public class ProductRepository : Repository<Product>, IProductRepository
     {
         private readonly WarehouseContext _context;
+
+        
 
         public ProductRepository(WarehouseContext context) : base(context)
         {

@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Xml.Linq;
+using Warehouse.Core;
 using Warehouse.Persistence;
+using Warehouse.Persistence.Repositories;
 
 namespace Warehouse
 {
@@ -13,26 +16,32 @@ namespace Warehouse
         {
             using (var unitOfWork = new UnitOfWork(new WarehouseContext()))
             {
-                var prod = new Product
+                while(true)
                 {
-                    Name = "Test",
-                    Quantity = 7,
-                    Price = 10.5M
-                };
+                    var userInput = Console.ReadKey(true);
 
-                var prov = new Provider
-                {
-                    Name = "Russia"
-                };
-                unitOfWork.Providers.Add(prov);
+                    switch (userInput.Key)
+                    {
+                        case ConsoleKey.Spacebar:
+                            DisplayAll(unitOfWork);
+                            break;
+                        case ConsoleKey.N:
+                            Console.Write("Input Product Id: ");
+                            int prodId = int.Parse(Console.ReadLine());
+                            var product = unitOfWork.Products.Get(prodId);
 
-                //var cust = unitOfWork.Customers.Get(1);
+                            Console.Write("Input Provider Id: ");
+                            int provId = int.Parse(Console.ReadLine());
+                            var provider = unitOfWork.Providers.Get(provId);
 
-                NewProduct(unitOfWork, prod, prov);
-                //SellProduct(unitOfWork, prod.Name, cust, 5);
+                            NewProduct(unitOfWork, product, provider);
+                            break;
+                    }
 
-                unitOfWork.Complete();
+                    unitOfWork.Complete();
+                }
             }
+            Console.ReadKey();
         }
         public static void NewProduct(UnitOfWork unitOfWork, Product product, Provider provider)
         {
@@ -51,7 +60,7 @@ namespace Warehouse
             if (prod == null)
             {
                 unitOfWork.Products.Add(product);
-                return ;
+                return;
             }
             prod.Quantity += product.Quantity;
         }
@@ -76,7 +85,28 @@ namespace Warehouse
 
             Console.WriteLine($"Bought: {buy}");
             Console.WriteLine($"Sold: {sell}");
-            Console.WriteLine($"Profit: {sell-buy}");
+            Console.WriteLine($"Profit: {sell - buy}");
         }
+
+        public static void DisplayAll(UnitOfWork unitOfWork)
+        {
+            Display(unitOfWork.Orders.GetAll());
+            Display(unitOfWork.Customers.GetAll());
+            Display(unitOfWork.Products.GetAll());
+            Display(unitOfWork.Providers.GetAll());
+        }
+
+        public static void Display(IEnumerable e)
+        {
+            var className = e.GetType().GetGenericArguments()[0].Name;
+            Console.WriteLine($"_____{className}_____");
+            foreach (var order in e)
+            {
+                Console.WriteLine(order);
+            }
+            Console.WriteLine();
+        }
+
+       
     }
 }
