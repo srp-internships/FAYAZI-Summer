@@ -396,3 +396,7 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+<<<<<<< HEAD
+=======
+/C# Advanced/LINQ Practice/LINQ Practice/LINQ Practice.csproj
+>>>>>>> 450b91103dda0d02b51de2452afb7e0f49ff6866
