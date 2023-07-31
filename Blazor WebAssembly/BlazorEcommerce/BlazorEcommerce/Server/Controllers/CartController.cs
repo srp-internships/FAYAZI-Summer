@@ -1,7 +1,6 @@
 ﻿using BlazorEcommerce.Server.Services.CartService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Security.Claims;
 
 namespace BlazorEcommerce.Server.Controllers
@@ -30,12 +29,14 @@ namespace BlazorEcommerce.Server.Controllers
             var result = await _cartService.StoreCartItems(cartItems);
             return Ok(result);
         }
+
         [HttpPost("add")]
         public async Task<ActionResult<ServiceResponse<bool>>> AddToCart(CartItem cartItem)
         {
             var result = await _cartService.AddToCart(cartItem);
             return Ok(result);
         }
+
         [HttpPut("update-quantity")]
         public async Task<ActionResult<ServiceResponse<bool>>> UpdateQuantity(CartItem cartItem)
         {
@@ -55,6 +56,7 @@ namespace BlazorEcommerce.Server.Controllers
         {
             return await _cartService.GetCartItemsCount();
         }
+
         [HttpGet]
         public async Task<ActionResult<ServiceResponse<List<CartProductResponse>>>> GetDbCartProducts()
         {

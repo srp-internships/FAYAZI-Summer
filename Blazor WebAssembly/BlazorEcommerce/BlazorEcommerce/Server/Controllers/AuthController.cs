@@ -16,21 +16,22 @@ namespace BlazorEcommerce.Server.Controllers
         {
             _authService = authService;
         }
+
         [HttpPost("register")]
         public async Task<ActionResult<ServiceResponse<int>>> Register(UserRegister request)
         {
             var response = await _authService.Register(
                 new User
                 {
-                    Email = request.Email,
-
+                    Email = request.Email
                 },
-                request.Password
-                );
+                request.Password);
+
             if (!response.Success)
             {
                 return BadRequest(response);
             }
+
             return Ok(response);
         }
 
@@ -42,6 +43,7 @@ namespace BlazorEcommerce.Server.Controllers
             {
                 return BadRequest(response);
             }
+
             return Ok(response);
         }
 

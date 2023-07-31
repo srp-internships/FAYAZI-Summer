@@ -10,7 +10,7 @@
     <div class="mb-3">
         <label for="email">Email</label>
         <InputText id="email" @bind-Value="user.Email" class="form-control" />
-        <ValidationMessage For="@(() => user.Email)"/>
+        <ValidationMessage For="@(() => user.Email)" />
     </div>
     <div class="mb-3">
         <label for="password">Password</label>
@@ -36,7 +36,6 @@
 
     async Task HandleRegistration()
     {
-        Console.WriteLine("shit");
         var result = await AuthService.Register(user);
         message = result.Message;
         if (result.Success)

@@ -5,7 +5,7 @@
 
 <div class="dropdown">
     <button @onclick="ToggleUserMenu"
-    @onfocusout="HideUserMenu"
+            @onfocusout="HideUserMenu"
             class="btn btn-secondary dropdown-toggle user-button">
         <i class="oi oi-person"></i>
     </button>
@@ -13,6 +13,7 @@
         <AuthorizeView>
             <Authorized>
                 <a href="profile" class="dropdown-item">Profile</a>
+                <a href="orders" class="dropdown-item">Orders</a>
                 <hr />
                 <button class="dropdown-item" @onclick="Logout">Logout</button>
             </Authorized>
@@ -20,7 +21,7 @@
                 <a href="login?returnUrl=@NavigationManager.ToBaseRelativePath(NavigationManager.Uri)" class="dropdown-item">Login</a>
                 <a href="register" class="dropdown-item">Register</a>
             </NotAuthorized>
-        </AuthorizeView>   
+        </AuthorizeView>
     </div>
 </div>
 

@@ -26,7 +26,7 @@ else
                     </select>
                 </div>
             }
-            @if (GetSelectedVariant() is not null)
+            @if (GetSelectedVariant() != null)
             {
                 @if (GetSelectedVariant().OriginalPrice > GetSelectedVariant().Price)
                 {
@@ -43,6 +43,7 @@ else
             </button>
         </div>
     </div>
+
 }
 
 @code {
@@ -56,6 +57,7 @@ else
     protected override async Task OnParametersSetAsync()
     {
         message = "Loading product...";
+
         var result = await ProductService.GetProduct(Id);
         if (!result.Success)
         {
@@ -70,11 +72,13 @@ else
             }
         }
     }
+
     private ProductVariant GetSelectedVariant()
     {
         var variant = product.Variants.FirstOrDefault(v => v.ProductTypeId == currentTypeId);
         return variant;
     }
+
     private async Task AddToCart()
     {
         var productVariant = GetSelectedVariant();
@@ -83,6 +87,7 @@ else
                 ProductId = productVariant.ProductId,
                 ProductTypeId = productVariant.ProductTypeId
             };
+
         await CartService.AddToCart(cartItem);
     }
 }

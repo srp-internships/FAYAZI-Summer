@@ -2,7 +2,6 @@
 {
     public interface ICategoryService
     {
-        Task <ServiceResponse<List<Category>>> GetCategories();
-
+        Task<ServiceResponse<List<Category>>> GetCategories();
     }
 }

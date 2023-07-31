@@ -5,7 +5,7 @@
 
 <PageTitle>My Shop</PageTitle>
 
-@if (SearchText is null && CategoryUrl is null)
+@if (SearchText == null && CategoryUrl == null)
 {
     <FeaturedProducts />
 }
@@ -15,7 +15,6 @@ else
 }
 
 @code {
-
     [Parameter]
     public string? CategoryUrl { get; set; } = null;
 
@@ -27,7 +26,7 @@ else
 
     protected override async Task OnParametersSetAsync()
     {
-        if (SearchText is not null)
+        if (SearchText != null)
         {
             await ProductService.SearchProducts(SearchText, Page);
         }
@@ -36,5 +35,4 @@ else
             await ProductService.GetProducts(CategoryUrl);
         }
     }
-
 }
