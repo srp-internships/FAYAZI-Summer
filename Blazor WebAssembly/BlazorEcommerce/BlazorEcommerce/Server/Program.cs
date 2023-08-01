@@ -1,13 +1,16 @@
 global using BlazorEcommerce.Shared;
 using BlazorEcommerce.Server.Data;
+using BlazorEcommerce.Server.Services.AddressService;
 using BlazorEcommerce.Server.Services.AuthService;
 using BlazorEcommerce.Server.Services.CartService;
 using BlazorEcommerce.Server.Services.CategoryService;
 using BlazorEcommerce.Server.Services.OrderService;
+using BlazorEcommerce.Server.Services.PaymentService;
 using BlazorEcommerce.Server.Services.ProductService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+//using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +32,8 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICartService, CartService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IPaymentService, PaymentService>();
+builder.Services.AddScoped<IAddressService, AddressService>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
