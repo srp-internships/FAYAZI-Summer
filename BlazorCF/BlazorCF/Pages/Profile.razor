@@ -1,0 +1,39 @@
+﻿@page "/profile"
+@inject ISyncLocalStorageService LocalStorage
+@inject IAuthService AuthService
+@inject NavigationManager NavigationManager
+
+<h3>
+    @if (user != null)
+    {
+        <img src="@user.Data.Avatar_Url" width="200px" />
+        @user.Data.Login
+
+        <button @onclick="HandleLogout">Logout</button>
+    }
+</h3>
+
+
+
+@code {
+    ServiceResponse<User> user = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var token = LocalStorage.GetItem<string>("authToken");
+        if (token is null || token == string.Empty)
+        {
+            NavigationManager.NavigateTo("");
+        }
+        else
+        {
+            user = await AuthService.CurrentUserInfo(token);
+        }
+    }
+
+    private async Task HandleLogout()
+    {
+        LocalStorage.Clear();
+        NavigationManager.NavigateTo("");
+    }
+}

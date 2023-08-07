@@ -1,0 +1,53 @@
+﻿@page "/user"
+@inject ILocalStorageService LocalStorage
+@inject NavigationManager NavigationManager
+@inject IAuthService AuthService
+
+<h3>Login</h3>
+
+<EditForm Model="user" OnValidSubmit="HandleSubmit">
+    @if (isLoading)
+    {
+        <div class="loader">
+            <svg class="pl" width="240" height="240" viewBox="0 0 240 240">
+                <circle class="pl__ring pl__ring--a" cx="120" cy="120" r="105" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 660" stroke-dashoffset="-330" stroke-linecap="round"></circle>
+                <circle class="pl__ring pl__ring--b" cx="120" cy="120" r="35" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 220" stroke-dashoffset="-110" stroke-linecap="round"></circle>
+                <circle class="pl__ring pl__ring--c" cx="85" cy="120" r="70" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle>
+                <circle class="pl__ring pl__ring--d" cx="155" cy="120" r="70" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle>
+            </svg>
+        </div>
+    }
+    else
+    {
+        <div class="mb-3">
+            <InputText id="token" @bind-Value="user.Token" class="form-control" type="password" />
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+    }
+</EditForm>
+
+@code {
+    User user = new User();
+    bool isLoading = false;
+    private async Task HandleSubmit()
+    {
+        isLoading = true;
+        await Task.Delay(1000);
+        var result = await AuthService.CurrentUserInfo(user.Token);
+        if (result.Success)
+        {
+            await LocalStorage.SetItemAsync("authToken", user.Token);
+            isLoading = false;
+            NavigationManager.NavigateTo("profile");
+        }
+    }
+    protected async override Task OnInitializedAsync()
+    {
+        var token = await LocalStorage.GetItemAsync<string>("authToken");
+        var result = await AuthService.CurrentUserInfo(token);
+        if (result.Success)
+        {
+            NavigationManager.NavigateTo("profile");
+        }
+    }
+}
